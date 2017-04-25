@@ -7,3 +7,14 @@ var onRun = function(context) {
 	    }
 	}
 }
+
+var onRunDeselect = function(context) {
+	log(context.actionContext)
+	var selection = context.actionContext.oldSelection,
+	    loop = selection.objectEnumerator(), layer;
+	while(layer = loop.nextObject()) {
+	    if(layer.class() === MSSymbolInstance && layer.name().indexOf("@spacing") > -1) {
+	        layer.resetSizeToMaster()
+	    }
+	}
+}
